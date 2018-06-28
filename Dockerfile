@@ -32,9 +32,10 @@ RUN git clone https://github.com/greenplum-db/gpos ; cd gpos ; mkdir build ; cd 
 
 # Install GPORCA
 RUN cd /workspace
-RUN git clone https://github.com/greenplum-db/gporca && cd gporca ; git checkout tags/v2.56.3 ; /usr/bin/cmake3 -GNinja -H. -Bbuild && ninja install -C build 
+RUN git clone https://github.com/greenplum-db/gporca && cd gporca ; git checkout tags/v2.64.0 ; /usr/bin/cmake3 -GNinja -H. -Bbuild && ninja install -C build 
 
 RUN cd /workspace
+RUN cat '/usr/local/lib' >> /etc/ld.so.conf && cat '/usr/local/gpdb/lib' >> /etc/ld.so.conf
 RUN /sbin/ldconfig
 
 # Remove Original GPDB 
